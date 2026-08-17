@@ -55,8 +55,7 @@ npx vercel env add NVIDIA_API_KEY
    ```
 2. Go to [vercel.com](https://vercel.com) → **New Project** → Import your repo
 3. In **Environment Variables**, add:
-   - **Name:** `NVIDIA_API_KEY`
-   - **Value:** `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`
+   - **Name:** `NVIDIA_API_KEY
 4. Click **Deploy** — Vercel auto-detects Next.js, zero config needed.
 
 > ⚠️ **Important:** Never commit `.env.local` to GitHub. It's already in `.gitignore`.
