@@ -202,7 +202,7 @@ export default function Layout({children,title,description}){
               </div>
               {[
                 {title:'Services',links:SERVICES.map(s=>({label:s.title,href:'/services'}))},
-                {title:'Company',links:[{label:'About',href:'/#about'},{label:'Technologies',href:'/#technologies'},{label:'Process',href:'#',onClick:()=>setProcessOpen(true)},{label:'Portfolio',href:'/portfolio'}]},
+                {title:'Company',links:[{label:'About',href:'/#about'},{label:'Technologies',href:'/#technologies'},{label:'Process',href:'#',onClick:()=>setProcessOpen(true)},{label:'Portfolio',href:'/portfolio'},{label:'Careers',href:'/careers'},{label:'Contact',href:'/contact'},{label:'Verify Certificate',href:'/verify-certificate'}]},
                 {title:'Contact',links:[{label:'support.whiztest@gmail.com',href:'mailto:support.whiztest@gmail.com'},{label:'+977 9866697309',href:'https://wa.me/9779866697309'},{label:'Pratappur-7, Suryapura, Nawalparasi -33008'},{label:'Mon–Sat 9am–7pm IST'}]},
               ].map((col,i)=>(
                 <div key={i}>
@@ -217,8 +217,14 @@ export default function Layout({children,title,description}){
                 </div>
               ))}
             </div>
-            <div style={{borderTop:'1px solid rgba(255,255,255,.08)',paddingTop:'24px',display:'flex',justifyContent:'space-between',flexWrap:'wrap',gap:'12px',fontSize:'.8rem'}}>
+            <div style={{borderTop:'1px solid rgba(255,255,255,.08)',paddingTop:'24px',display:'flex',justifyContent:'space-between',alignItems:'center',flexWrap:'wrap',gap:'14px',fontSize:'.8rem'}}>
               <span>© 2025 WhizTest Pvt Ltd — All rights reserved</span>
+              <div style={{display:'flex',gap:'20px',flexWrap:'wrap'}}>
+                <a href="/privacy-policy" style={{color:'inherit',textDecoration:'none',transition:'color .2s'}}
+                  onMouseEnter={e=>e.target.style.color='#38BDF8'} onMouseLeave={e=>e.target.style.color=''}>Privacy Policy</a>
+                <a href="/terms-of-service" style={{color:'inherit',textDecoration:'none',transition:'color .2s'}}
+                  onMouseEnter={e=>e.target.style.color='#38BDF8'} onMouseLeave={e=>e.target.style.color=''}>Terms of Service</a>
+              </div>
               <span>Made with ❤️ in Nepal</span>
             </div>
           </div>

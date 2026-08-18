@@ -51,6 +51,12 @@ body { font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans
   50%{transform:scale(1.15);opacity:1}
 }
 
+@media print {
+  body * { visibility: hidden; }
+  #certificate-print-area, #certificate-print-area * { visibility: visible; }
+  #certificate-print-area { position: absolute; top: 0; left: 0; width: 100%; box-shadow: none !important; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,*::before,*::after { animation-duration:.01ms!important; transition-duration:.01ms!important; }
 }
