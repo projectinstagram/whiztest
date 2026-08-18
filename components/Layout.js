@@ -48,6 +48,15 @@ export default function Layout({children,title,description}){
   const theme=getTheme(dark,isMobile);
   const {BG,BD,T1,T2,ACC,wrap}=theme;
 
+  // Keep html/body's own background locked to the page's actual live theme —
+  // never guessed from the OS's prefers-color-scheme, which can disagree with
+  // whichever theme this site is currently showing and leave a mismatched
+  // colored edge visible around the page.
+  useEffect(()=>{
+    document.documentElement.style.background=BG;
+    document.body.style.background=BG;
+  },[BG]);
+
   const ctxValue={dark,toggleDark,isMobile,setModal,setProcessOpen,...theme};
 
   return(
