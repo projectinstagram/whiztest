@@ -10,51 +10,28 @@ function formatDate(iso){
 
 export default function VerifyCertificateSection(){
   const router=useRouter();
-  const [input,setInput]=useState('');
-  const [result,setResult]=useState(null); // undefined-ish: null = not checked yet, cert object = valid, false = invalid
+  const [result,setResult]=useState(null); // null = no link opened yet, cert object = valid, false = invalid
   const [showCert,setShowCert]=useState(false);
   const {sec,wrap,CARD,BD,T1,T2,ACC,BG}=useSite();
 
-  const verify=(rawId)=>{
-    const id=(rawId||'').trim().toUpperCase();
-    if(!id)return;
-    const found=CERTIFICATES.find(c=>c.id.toUpperCase()===id);
-    setResult(found||false);
-    setShowCert(false);
-  };
-
-  // Support direct verification links, e.g. /verify-certificate?id=WT-2026-2421
+  // The only way in is a direct link, e.g. /verify-certificate?id=WT-2026-2421 —
+  // there's no on-page search, so nobody can browse or guess other certificates.
   useEffect(()=>{
     if(!router.isReady)return;
     const q=router.query.id;
-    if(q){
-      const idStr=Array.isArray(q)?q[0]:q;
-      setInput(idStr);
-      verify(idStr);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[router.isReady]);
+    if(!q)return;
+    const id=(Array.isArray(q)?q[0]:q).trim().toUpperCase();
+    const found=CERTIFICATES.find(c=>c.id.toUpperCase()===id);
+    setResult(found||false);
+    setShowCert(!!found);
+  },[router.isReady,router.query.id]);
 
   return(
     <section style={sec(BG)}>
       <div style={{...wrap,maxWidth:'640px'}}>
-        <form onSubmit={e=>{e.preventDefault();verify(input);}}
-          style={{display:'flex',gap:'10px',flexWrap:'wrap',marginBottom:'28px'}}>
-          <input value={input} onChange={e=>setInput(e.target.value)}
-            placeholder="Enter Certificate ID (e.g. WT-2026-2421)"
-            style={{flex:1,minWidth:'220px',padding:'13px 16px',borderRadius:'12px',border:`1px solid ${BD}`,
-              background:CARD,color:T1,fontSize:'.92rem',outline:'none',fontFamily:"'Plus Jakarta Sans',sans-serif"}}/>
-          <button type="submit"
-            style={{background:'linear-gradient(135deg,#2563EB,#4F46E5)',color:'#fff',border:'none',borderRadius:'12px',
-              padding:'13px 28px',fontWeight:700,fontSize:'.92rem',cursor:'pointer',fontFamily:"'Plus Jakarta Sans',sans-serif",
-              boxShadow:'0 6px 18px rgba(37,99,235,.3)'}}>
-            Verify →
-          </button>
-        </form>
-
         {result===null&&(
           <p style={{color:T2,fontSize:'.88rem',lineHeight:1.7,textAlign:'center'}}>
-            Every internship and completion certificate issued by WhizTest Pvt Ltd carries a unique Certificate ID. Enter it above to confirm it's genuine.
+            This page verifies a specific certificate using the private link provided with it. If you were given a verification link, open it directly — no certificate is shown without one.
           </p>
         )}
 

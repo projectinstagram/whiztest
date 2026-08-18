@@ -202,7 +202,7 @@ export default function Layout({children,title,description}){
               </div>
               {[
                 {title:'Services',links:SERVICES.map(s=>({label:s.title,href:'/services'}))},
-                {title:'Company',links:[{label:'About',href:'/#about'},{label:'Technologies',href:'/#technologies'},{label:'Process',href:'#',onClick:()=>setProcessOpen(true)},{label:'Portfolio',href:'/portfolio'},{label:'Careers',href:'/careers'},{label:'Contact',href:'/contact'},{label:'Verify Certificate',href:'/verify-certificate'}]},
+                {title:'Company',links:[{label:'About',href:'/#about'},{label:'Technologies',href:'/#technologies'},{label:'Process',href:'#',onClick:()=>setProcessOpen(true)},{label:'Portfolio',href:'/portfolio'},{label:'Careers',href:'/careers'},{label:'Contact',href:'/contact'}]},
                 {title:'Contact',links:[{label:'support.whiztest@gmail.com',href:'mailto:support.whiztest@gmail.com'},{label:'+977 9866697309',href:'https://wa.me/9779866697309'},{label:'Pratappur-7, Suryapura, Nawalparasi -33008'},{label:'Mon–Sat 9am–7pm IST'}]},
               ].map((col,i)=>(
                 <div key={i}>
